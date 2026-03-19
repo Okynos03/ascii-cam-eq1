@@ -17,6 +17,53 @@ import { imageDataToAscii, CHARSET_STANDARD } from "@/lib/ascii";
 const ASCII_COLS = 120;
 const ASCII_ROWS = 60;
 
+// ============================================================
+// TODO #1 — EQUIPO 1: Filtro de inversion de colores
+// ============================================================
+// Implementar una función que, antes de calcular el brillo,
+// invierta los valores RGB de cada pixel: r = 255-r, g = 255-g, b = 255-b.
+// Agregar un boton "[ INVERT ]" en los controles que active esta opcion.
+// Pista: modificar la funcion imageDataToAscii en lib/ascii.ts para
+// aceptar un parametro `invert: boolean`.
+// ============================================================
+
+// ============================================================
+// TODO #2 — EQUIPO 2: Ajuste de densidad/resolución ASCII
+// ============================================================
+// Agregar un slider que controle ASCII_COLS y ASCII_ROWS
+// (por ejemplo, entre 40x20 y 200x100).
+// El texto se volverá más o menos detallado según el valor.
+// Pista: convertir ASCII_COLS y ASCII_ROWS a estado con useState.
+// ============================================================
+
+// ============================================================
+// TODO #3 — EQUIPO 3: Guardar captura como imagen PNG
+// ============================================================
+// Implementar un boton "[ SAVE PNG ]" que:
+//   1. Cree un <canvas> temporal del tamaño del texto ASCII
+//   2. Renderice el texto ASCII caracter por caracter sobre el canvas
+//   3. Llame a canvas.toDataURL("image/png") y dispare una descarga
+// Pista: usar un elemento <a> con `download` attribute para la descarga.
+// ============================================================
+
+// ============================================================
+// TODO #4 — EQUIPO 4: Modo oscuro / claro
+// ============================================================
+// El diseño actual es siempre fondo negro + texto verde (modo "terminal").
+// Agregar un toggle que cambie entre:
+//   - Modo terminal: bg-black, text-green-400
+//   - Modo claro: bg-white, text-gray-900
+// Pista: usar un estado `theme` y aplicar clases condicionales.
+// ============================================================
+
+// ============================================================
+// TODO #5 — EQUIPO 6: Selector de charset
+// ============================================================
+// Ver lib/ascii.ts para la descripcion completa.
+// Aqui agregar un <select> o botones que cambien el charset
+// y pasen la nueva variable a imageDataToAscii.
+// ============================================================
+
 export default function AsciiCamera() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);

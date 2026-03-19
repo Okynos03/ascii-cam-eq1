@@ -8,6 +8,14 @@
 
 export const CHARSET_STANDARD = " .`'^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
 
+// TODO #5 — EQUIPO 5: Selector de charset
+// Implementar un selector que permita al usuario elegir entre
+// distintos conjuntos de caracteres. Ejemplos:
+//   CHARSET_STANDARD (el actual)
+//   CHARSET_BLOCKS  = ' ░▒▓█'
+//   CHARSET_MINIMAL = ' .:-='
+//   CHARSET_DENSE   = '$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,"^`\'. '
+
 /**
  * Convierte un ImageData (frame de canvas) a un string ASCII.
  * @param imageData - Datos de pixele del canvas
