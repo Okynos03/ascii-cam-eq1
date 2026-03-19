@@ -114,7 +114,7 @@ Este proyecto tiene **5 funcionalidades** marcadas con comentarios `TODO` en el 
 | 1 | Filtro de inversión de colores | `lib/ascii.ts`, `components/AsciiCamera.tsx` |  Facil |
 | 2 | Ajuste de densidad/resolución | `components/AsciiCamera.tsx` |  Facil |
 | 3 | Guardar captura como PNG | `components/AsciiCamera.tsx` |  Media |
-| 4 | Modo oscuro / claro / ámbar | `components/AsciiCamera.tsx`, `app/globals.css` |  Facil |
+| 4 | Modo oscuro / claro  | `components/AsciiCamera.tsx`, `app/globals.css` |  Facil |
 | 5 | Selector de charset | `lib/ascii.ts`, `components/AsciiCamera.tsx` |  Facil |
 
 **Ver [`CONTRIBUTING.md`](./CONTRIBUTING.md) para instrucciones de como hacer el PR.**
