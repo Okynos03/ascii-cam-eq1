@@ -62,6 +62,10 @@ Devuelve la documentacion del endpoint.
 
 Convierte una imagen a ASCII en el servidor.
 
+### `Preparar imagen`
+
+Pagina para convertir a Base64: https://base64.guru/converter/encode/image
+
 **Body (JSON):**
 ```json
 {
