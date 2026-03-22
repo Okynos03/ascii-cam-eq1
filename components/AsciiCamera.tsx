@@ -212,6 +212,16 @@ export default function AsciiCamera() {
           </button>
         )}
 
+        {/* TODO #4: Modo oscuro /claro /amber */}
+        <button
+          onClick={() => setTheme(t =>
+            t === "terminal" ? "light" : t === "light" ? "amber" : "terminal"
+          )}
+          className={`px-5 py-2 rounded text-sm transition-all cursor-pointer border ${btnBase}`}
+        >
+          {theme  === "terminal" ? "☀ LIGHT" : theme === "light" ? "◈ AMBER" : "◉ DARK"}
+        </button>
+  
         {/* Indicadores de estado */}
         <div className="flex items-center gap-3 text-xs text-green-700">
           <span>
