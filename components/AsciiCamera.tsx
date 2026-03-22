@@ -149,6 +149,46 @@ export default function AsciiCamera() {
     setFps(0);
   }, []);
 
+  // TODO #3 - Parte de Emilio Sarmiento: Crear el canvas temporal del texto ASCII
+  const createTempCanvasForAscii = useCallback((text: string) => {
+    if (!text) return null;
+
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return null;
+
+    const lines = text.split("\n");
+    const fontSize = 12;
+    const lineHeight = fontSize * 1.2;
+
+    // Calculamos el ancho maximo
+    ctx.font = `${fontSize}px monospace`;
+    let maxWidth = 0;
+    for (const line of lines) {
+      const width = ctx.measureText(line).width;
+      if (width > maxWidth) maxWidth = width;
+    }
+
+    // Ajustamos tamaño del canvas
+    canvas.width = maxWidth + 40; // padding
+    canvas.height = lines.length * lineHeight + 40;
+
+    // Pintar fondo
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Pintar texto
+    ctx.fillStyle = "#4ade80"; // texto verde
+    ctx.font = `${fontSize}px monospace`;
+    ctx.textBaseline = "top";
+
+    lines.forEach((line, i) => {
+      ctx.fillText(line, 20, 20 + i * lineHeight);
+    });
+
+    return canvas;
+  }, []);
+
   // Cleanup al desmontar
   useEffect(() => {
     return () => {
