@@ -76,6 +76,7 @@ export default function AsciiCamera() {
   const [fps, setFps] = useState(0);
   const [theme, setTheme] = useState<"terminal" | "light" | "amber">("terminal");
   const lastFrameTime = useRef(Date.now());
+  const [mounted, setMounted] = useState(false);
 
   // Funcion principal del loop de renderizado
   const renderFrame = useCallback(() => {
@@ -156,6 +157,8 @@ export default function AsciiCamera() {
       stopCamera();
     };
   }, [stopCamera]);
+
+  useEffect(() => { setMounted(true); }, []);
 
   const isTerminal = theme === "terminal";
   const isAmber    = theme === "amber";
