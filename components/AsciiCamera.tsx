@@ -97,9 +97,12 @@ export default function AsciiCamera() {
     ctx.drawImage(video, -canvas.width, 0, canvas.width, canvas.height);
     ctx.restore();
 
-    // Leemos los pixeles y convertimos a ASCII
+    // Read the pixels and convert to ASCII using the dynamic ref
+    const currentCols = colsRef.current;
+    const currentRows = Math.floor(currentCols / 2);
+    
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const ascii = imageDataToAscii(imageData, ASCII_COLS, ASCII_ROWS, CHARSET_STANDARD);
+    const ascii = imageDataToAscii(imageData, currentCols, currentRows, CHARSET_STANDARD);
     setAsciiOutput(ascii);
 
     // Calcular FPS
