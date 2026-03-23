@@ -13,10 +13,6 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import { imageDataToAscii, CHARSET_STANDARD } from "@/lib/ascii";
 
-// Resolucion del output ASCII
-const ASCII_COLS = 120;
-const ASCII_ROWS = 60;
-
 // ============================================================
 // TODO #1 — EQUIPO 1: Filtro de inversion de colores
 // ============================================================
@@ -78,6 +74,13 @@ export default function AsciiCamera() {
   const lastFrameTime = useRef(Date.now());
   const [mounted, setMounted] = useState(false);
 
+  // --- TODO #2: ESTADOS Y REFERENCIAS PARA RESOLUCIÓN ---
+  const [asciiCols, setAsciiCols] = useState<number>(120);
+  const asciiRows = Math.floor(asciiCols / 2); // Mantiene la proporción 2:1
+  
+  // Usamos una referencia para el loop de animación (evita stale closures)
+  const colsRef = useRef<number>(120);
+
   // Funcion principal del loop de renderizado
   const renderFrame = useCallback(() => {
     const video = videoRef.current;
@@ -96,9 +99,12 @@ export default function AsciiCamera() {
     ctx.drawImage(video, -canvas.width, 0, canvas.width, canvas.height);
     ctx.restore();
 
-    // Leemos los pixeles y convertimos a ASCII
+    // Read the pixels and convert to ASCII using the dynamic ref
+    const currentCols = colsRef.current;
+    const currentRows = Math.floor(currentCols / 2);
+    
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const ascii = imageDataToAscii(imageData, ASCII_COLS, ASCII_ROWS, CHARSET_STANDARD);
+    const ascii = imageDataToAscii(imageData, currentCols, currentRows, CHARSET_STANDARD);
     setAsciiOutput(ascii);
 
     // Calcular FPS
@@ -298,6 +304,26 @@ export default function AsciiCamera() {
           </button>
         )}
 
+        {/* TODO #2: Density Slider */}
+        <div className="flex items-center gap-2 border border-green-900 bg-black px-3 py-1.5 rounded">
+          <label htmlFor="density-slider" className="text-xs text-green-600 font-bold">
+            DENSITY:
+          </label>
+          <input
+            id="density-slider"
+            type="range"
+            min="40"
+            max="200"
+            step="10"
+            value={asciiCols}
+            onChange={(e) => {
+              const val = Number(e.target.value);
+              setAsciiCols(val);       // Updates the UI
+              colsRef.current = val;   // Updates the render loop
+            }}
+            className="w-24 cursor-pointer accent-green-500"
+          />
+        </div>
         {/* TODO #4: Tema */}
         {mounted && (
           <button
@@ -321,6 +347,9 @@ export default function AsciiCamera() {
         <div className={`flex items-center gap-3 text-xs ${labelClass}`}>
           <span>
             RES:{" "}
+            <span className="text-green-500">
+              {asciiCols}×{asciiRows}
+            </span>
             <span className={valClass}>{ASCII_COLS}×{ASCII_ROWS}</span>
           </span>
           {isRunning && (
