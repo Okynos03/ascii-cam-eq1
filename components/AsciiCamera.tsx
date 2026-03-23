@@ -223,7 +223,7 @@ export default function AsciiCamera() {
           <span>
             RES:{" "}
             <span className="text-green-500">
-              {ASCII_COLS}×{ASCII_ROWS}
+              {asciiCols}×{asciiRows}
             </span>
           </span>
           {isRunning && (
