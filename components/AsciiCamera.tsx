@@ -226,29 +226,27 @@ export default function AsciiCamera() {
         )}
   
         {/* Indicadores de estado */}
-        <div className="flex items-center gap-3 text-xs text-green-700">
+        <div className={`flex items-center gap-3 text-xs ${labelClass}`}>
           <span>
             RES:{" "}
-            <span className="text-green-500">
-              {ASCII_COLS}×{ASCII_ROWS}
-            </span>
+            <span className={valClass}>{ASCII_COLS}×{ASCII_ROWS}</span>
           </span>
           {isRunning && (
             <span>
               FPS:{" "}
-              <span className="text-green-400">{fps}</span>
+              <span className={valClass}>{fps}</span>
             </span>
           )}
           <span>
             CHARSET:{" "}
-            <span className="text-green-500 font-bold">STANDARD</span>
+            <span className={`font-bold ${valClass}`}>STANDARD</span>
           </span>
         </div>
 
         {isRunning && (
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse inline-block" />
-            <span className="text-xs text-green-600">LIVE</span>
+            <span className={`text-xs ${labelClass}`}>LIVE</span>
           </div>
         )}
       </div>
